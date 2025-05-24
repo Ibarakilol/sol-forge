@@ -1,0 +1,73 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.select {
+  position: relative;
+  width: 100%;
+
+  &:hover:not(.selectDisabled) {
+    .selectButton {
+      border-color: $color-black-50;
+    }
+  }
+
+  &:focus-within:not(.selectDisabled) {
+    .selectButton {
+      border-color: transparent;
+      box-shadow: $shadow-focus;
+    }
+  }
+}
+
+.selectDisabled {
+  pointer-events: none;
+
+  .selectButton {
+    background-color: $color-black-4;
+    border-color: $color-black-4;
+    cursor: default;
+  }
+
+  .selectIcon {
+    color: $color-black-25;
+  }
+
+  .selectValue {
+    color: $color-black-25;
+  }
+}
+
+.selectOpen {
+  .selectIcon {
+    transform: rotate(180deg);
+  }
+}
+
+.selectButton {
+  @include reset-button();
+  align-content: center;
+  background-color: $color-white;
+  border: 1px solid $color-black-30;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 1fr 20px;
+  height: $component-input-height;
+  justify-content: space-between;
+  padding: 9px 11px;
+  transition: border-color $transition-time;
+  width: 100%;
+}
+
+.selectIcon {
+  color: $color-text-body;
+  transition: transform $transition-time;
+}
+
+.selectValue {
+  @include textBody();
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

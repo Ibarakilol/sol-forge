@@ -8,20 +8,26 @@
   background-color: $background-button;
   border: 1px solid transparent;
   border-radius: 8px;
+  box-sizing: border-box;
   display: grid;
   justify-content: center;
   min-height: 40px;
   padding: 9px 11px;
-  transition: all $transition-time;
+  transition: filter $transition-time;
 
   &:hover {
     filter: brightness(1.1);
   }
 
   &:disabled {
-    background-color: $color-black-20;
+    background-color: $color-black-4;
     cursor: default;
     pointer-events: none;
+
+    .buttonIcon,
+    .buttonLabel {
+      color: $color-black-25;
+    }
   }
 }
 
