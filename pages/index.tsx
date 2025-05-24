@@ -1,6 +1,8 @@
 import { Roboto } from 'next/font/google';
 import Head from 'next/head';
 
+import WalletContextProvider from '@/providers/wallet-context-provider';
+
 const fontSans = Roboto({
   variable: '--font-sans',
   subsets: ['latin'],
@@ -16,7 +18,9 @@ export default function Home() {
         <meta content="width=device-width, initial-scale=1" name="viewport" />
         <link href="/favicon.ico" rel="icon" />
       </Head>
-      <div className={fontSans.variable}></div>
+      <WalletContextProvider>
+        <div className={fontSans.variable}></div>
+      </WalletContextProvider>
     </>
   );
 }
