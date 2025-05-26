@@ -1,6 +1,7 @@
 import { Roboto } from 'next/font/google';
 import Head from 'next/head';
 
+import Footer from '@/components/common/footer';
 import Header from '@/components/common/header';
 import Modals from '@/components/modals';
 
@@ -24,6 +25,8 @@ export default function Home() {
       <WalletContextProvider>
         <div className={fontSans.variable}>
           <Header />
+          <main></main>
+          <Footer />
           <Modals />
         </div>
       </WalletContextProvider>

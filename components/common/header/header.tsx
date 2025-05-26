@@ -1,6 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 
 import Button from '@/components/ui/button';
+import Logo from '../logo';
 import WalletIcon from '@/assets/icons/wallet.svg';
 
 import { useModalStore } from '@/stores/modal-store';
@@ -23,7 +24,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <span className={styles.headerTitle}>SolForge</span>
+      <Logo isSmall />
       <Button
         className={styles.headerWalletButton}
         icon={<WalletIcon />}

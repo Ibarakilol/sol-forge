@@ -1,0 +1,27 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.footer {
+  background-color: $background-footer;
+  border-top: 1px solid $color-border;
+  display: grid;
+  gap: 32px;
+  padding: 48px 32px;
+}
+
+.footerContent {
+  display: grid;
+  gap: 12px;
+}
+
+.footerInfo {
+  @include reset-description();
+  @include textBody($color: $color-black-50);
+  max-width: 380px;
+}
+
+.footerCopyrights {
+  @include textBody($color: $color-black-50);
+  border-top: 1px solid $color-border;
+  padding-top: 32px;
+}
