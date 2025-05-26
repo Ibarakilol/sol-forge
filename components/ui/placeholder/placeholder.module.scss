@@ -1,0 +1,14 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.placeholder {
+  @include textAccent($color: $color-black-50);
+  align-content: center;
+  bottom: 0;
+  display: grid;
+  height: $component-input-height;
+  left: 12px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 5;
+}

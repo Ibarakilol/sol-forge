@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import SelectDropdown from './components/select-dropdown';
-import ChevronDown from '@/assets/icons/chevron-down.svg';
+import ChevronDownIcon from '@/assets/icons/chevron-down.svg';
 
 import { useElementPosition, useOnClickOutside } from '@/hooks';
 import type { ISelectOption } from '@/interfaces';
@@ -46,7 +46,7 @@ const Select = ({ isDisabled, isOptional, items, value, onSelect }: SelectProps)
     >
       <button className={styles.selectButton} disabled={isDisabled} onClick={handleClick}>
         <span className={styles.selectValue}>{currentValueLabel}</span>
-        <ChevronDown className={styles.selectIcon} />
+        <ChevronDownIcon className={styles.selectIcon} />
       </button>
       {isOpen && (
         <SelectDropdown
