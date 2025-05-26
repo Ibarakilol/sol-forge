@@ -36,12 +36,8 @@ const Modal = ({ modalName }: ModalProps) => {
   const ModalComponent = MODAL_COMPONENTS[modalName] || null;
 
   return (
-    <div className={clsx(styles.modal, isUnmounting && styles.modalHiding, 'scrollbar')}>
-      <div
-        ref={modalRef}
-        className={clsx(styles.modalWrapper, 'scrollbar')}
-        onAnimationEnd={onAnimationEnd}
-      >
+    <div className={clsx(styles.modal, isUnmounting && styles.modalHiding)}>
+      <div ref={modalRef} className={styles.modalWrapper} onAnimationEnd={onAnimationEnd}>
         <ModalComponent onCloseButtonClick={unmountComponent} />
       </div>
     </div>

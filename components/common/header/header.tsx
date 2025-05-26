@@ -10,8 +10,16 @@ import { ModalName } from '@/constants';
 import styles from './header.module.scss';
 
 const Header = () => {
-  const { publicKey } = useWallet();
+  const { publicKey, disconnect } = useWallet();
   const { showModal } = useModalStore();
+
+  const handleButtonClick = () => {
+    if (publicKey) {
+      disconnect();
+    } else {
+      showModal(ModalName.WALLETS);
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -20,7 +28,7 @@ const Header = () => {
         className={styles.headerWalletButton}
         icon={<WalletIcon />}
         label={publicKey ? publicKey.toBase58() : 'Connect Wallet'}
-        onClick={() => showModal(ModalName.WALLETS)}
+        onClick={handleButtonClick}
       />
     </header>
   );

@@ -1,3 +1,21 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
 .modalWallets {
   display: grid;
+  gap: 20px;
+  padding: 16px;
+}
+
+.modalWalletsTitle {
+  @include textBody($color: $color-white, $size: 16px);
+}
+
+.modalWalletsList {
+  display: grid;
+  gap: 8px;
+}
+
+.modalWalletsWarning {
+  @include textBody($color: $color-red);
 }

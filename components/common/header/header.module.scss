@@ -12,6 +12,8 @@
 
 .headerTitle {
   @include textBody($color: $color-white, $size: 24px, $weight: $font-weight-bold);
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .headerWalletButton {

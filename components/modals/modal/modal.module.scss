@@ -28,10 +28,9 @@
 
 .modalWrapper {
   animation: $transition-time forwards fadeIn;
-  border-radius: 4px;
+  background-color: $background-modal;
+  border: 1px solid $color-border;
+  border-radius: 12px;
   box-shadow: $shadow-modal;
-  box-sizing: border-box;
-  overflow: auto;
-  padding: 16px;
   width: 100%;
 }
