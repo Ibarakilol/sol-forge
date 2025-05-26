@@ -43,9 +43,10 @@ const eslintConfig = [
               '^@/pages/((?!/hooks/).)*$',
               '^@/components/',
               'components',
-              "'^\\.(\\.)?/((?!_components)[a-z\\d-]+/)?[a-z\\d-]+(?<!/providers)$',",
+              '^\\.(\\.)?/((?!components)[a-z\\d-]+/)?[a-z\\d-]+(?<!-store)$',
               '^@/assets/',
             ],
+            ['^@/stores/', '^\\.(\\.)?/([a-z\\d/-]+)-store\\u0000?$'],
             [
               '/providers',
               '/hooks/',

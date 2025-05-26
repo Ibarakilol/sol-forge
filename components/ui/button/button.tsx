@@ -4,10 +4,10 @@ import type { ButtonProps } from './button.props';
 
 import styles from './button.module.scss';
 
-const Button = ({ icon, isDisabled, label, onClick }: ButtonProps) => {
+const Button = ({ className, icon, isDisabled, label, onClick }: ButtonProps) => {
   return (
     <button
-      className={clsx(styles.button, icon && styles.buttonWithIcon)}
+      className={clsx(styles.button, className, icon && styles.buttonWithIcon)}
       disabled={isDisabled}
       onClick={onClick}
     >

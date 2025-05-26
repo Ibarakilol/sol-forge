@@ -12,7 +12,7 @@
   display: grid;
   justify-content: center;
   min-height: 40px;
-  padding: 9px 11px;
+  padding: 9px 24px;
   transition: filter $transition-time;
 
   &:hover {
@@ -34,7 +34,6 @@
 .buttonWithIcon {
   gap: 12px;
   grid-template-columns: 20px 1fr;
-  padding-right: 43px;
 }
 
 .buttonIcon {

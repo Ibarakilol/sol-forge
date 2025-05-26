@@ -1,0 +1,19 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.header {
+  align-items: center;
+  border-bottom: 1px solid $color-border;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  padding: 14px 32px 13px;
+}
+
+.headerTitle {
+  @include textBody($color: $color-white, $size: 24px, $weight: $font-weight-bold);
+}
+
+.headerWalletButton {
+  width: 180px;
+}
