@@ -3,14 +3,14 @@ import { type RefObject, useEffect, useState } from 'react';
 export const useElementPosition = (
   ref: RefObject<HTMLElement | null>,
   elementHeight?: number,
-  externalElementClassName: string = '.app'
+  externalElementId: string = '#__next'
 ) => {
   const [elementPosition, setElementPosition] = useState<'top' | 'bottom'>('bottom');
 
   useEffect(() => {
     if (ref.current && elementHeight) {
       const refPosition = ref.current.getBoundingClientRect();
-      const externalElement = ref.current.closest(externalElementClassName);
+      const externalElement = ref.current.closest(externalElementId);
 
       if (externalElement) {
         const externalElementHeight = externalElement.getBoundingClientRect().bottom;
@@ -22,7 +22,7 @@ export const useElementPosition = (
         }
       }
     }
-  }, [elementHeight, externalElementClassName, ref]);
+  }, [elementHeight, externalElementId, ref]);
 
   return elementPosition;
 };
