@@ -1,0 +1,49 @@
+@import "@/scss/mixins.scss";
+
+.mainPage {
+  display: grid;
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
+  grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+.mainPageWrapper {
+  align-items: start;
+  display: grid;
+  gap: 48px;
+  grid-area: main;
+  justify-content: center;
+}
+
+.mainPageIntro {
+  align-items: center;
+  display: grid;
+  gap: 16px;
+  justify-content: center;
+  padding: 64px 0 32px;
+}
+
+.mainPageTitle {
+  @include reset-heading();
+  @include textHeading($color: transparent, $size: 48px);
+  background-clip: text;
+  background-image: linear-gradient(to right, #a347ff, #c084fc, $color-green);
+}
+
+.mainPageMoto {
+  @include reset-description();
+  @include textBody($color: $color-white, $size: 18px, $weight: $font-weight-bold);
+  text-align: center;
+}
+
+.mainPageContent {
+  align-items: start;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 320px;
+  justify-content: center;
+}

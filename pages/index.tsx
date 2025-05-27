@@ -1,16 +1,15 @@
 import { Roboto } from 'next/font/google';
 import Head from 'next/head';
 
-import Footer from '@/components/common/footer';
-import Header from '@/components/common/header';
 import Modals from '@/components/modals';
+import MainPage from './main-page';
 
 import WalletContextProvider from '@/providers/wallet-context-provider';
 
 const fontSans = Roboto({
   variable: '--font-sans',
   subsets: ['latin'],
-  weight: ['400', '700'],
+  weight: ['400', '500', '700'],
 });
 
 export default function Home() {
@@ -24,9 +23,7 @@ export default function Home() {
       </Head>
       <WalletContextProvider>
         <div className={fontSans.variable}>
-          <Header />
-          <main></main>
-          <Footer />
+          <MainPage />
           <Modals />
         </div>
       </WalletContextProvider>

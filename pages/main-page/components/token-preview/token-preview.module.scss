@@ -1,0 +1,80 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.tokenPreview {
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+.tokenPreviewHeader {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 24px 1fr;
+}
+
+.tokenPreviewIcon {
+  color: $color-green;
+}
+
+.tokenPreviewTitle {
+  @include reset-heading();
+  @include textHeading($color: $color-white, $size: 20px);
+}
+
+.tokenPreviewToken {
+  background-color: $background-panel;
+  border-radius: 8px;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 40px 1fr;
+  padding: 16px;
+}
+
+.tokenPreviewTokenImage {
+  border-radius: 4px;
+}
+
+.tokenPreviewTokenText {
+  display: grid;
+  gap: 4px;
+}
+
+.tokenPreviewTokenName {
+  @include textBody($color: $color-white, $size: 16px, $weight: $font-weight-medium);
+}
+
+.tokenPreviewTokenSymbol {
+  @include textBody($color: $color-black-30);
+  text-transform: uppercase;
+}
+
+.tokenPreviewInfo {
+  @include reset-list();
+  display: grid;
+  gap: 8px;
+}
+
+.tokenPreviewInfoItem {
+  @include reset-list-item();
+  align-items: center;
+  display: grid;
+  gap: 20px;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.tokenPreviewInfoItemLabel {
+  @include textBody($color: $color-black-30);
+}
+
+.tokenPreviewInfoItemValue {
+  @include textBody($color: $color-white);
+}
+
+.tokenPreviewInfoItemValueNetwork {
+  color: $color-green;
+}

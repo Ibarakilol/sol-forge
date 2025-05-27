@@ -3,12 +3,13 @@ $font-main: var(--font-sans);
 
 // FONT WEIGHTS
 $font-weight-regular: 400;
+$font-weight-medium: 500;
 $font-weight-bold: 700;
 
 // BACKGROUNDS
 $background-body: #06001d;
-$background-button: #9b87f5;
-$background-footer: #161224;
+$background-button: #a347ff;
+$background-panel: #161224;
 $background-modal: #101725;
 
 // COLORS
@@ -17,6 +18,7 @@ $color-text-button: #ffffff;
 $color-border: #56565d;
 $color-outline: #35cdfd;
 $color-red: #d95151;
+$color-green: #1bf3a4;
 $color-white: #ffffff;
 $color-black: #000000;
 $color-black-80: #333333;

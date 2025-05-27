@@ -11,23 +11,19 @@
 @mixin textBody($color: $color-text-body, $size: 14px, $weight: $font-weight-regular) {
   @include text($color: $color, $size: $size, $weight: $weight);
   letter-spacing: 0.25px;
-  line-height: 20px;
 }
 
 @mixin textAccent($color: $color-text-body, $size: 14px, $weight: $font-weight-regular) {
   @include text($color: $color, $size: $size, $weight: $weight);
   letter-spacing: 0.3px;
-  line-height: 24px;
 }
 
 @mixin textCaption($color: $color-text-body, $size: 11px, $weight: $font-weight-regular) {
   @include text($color: $color, $size: $size, $weight: $weight);
   letter-spacing: 0.24px;
-  line-height: 16px;
 }
 
-@mixin textH1($color: $color-text-body, $size: 30px, $weight: $font-weight-bold) {
+@mixin textHeading($color: $color-text-body, $size: 30px, $weight: $font-weight-bold) {
   @include text($color: $color, $size: $size, $weight: $weight);
   letter-spacing: 0.25px;
-  line-height: 40px;
 }

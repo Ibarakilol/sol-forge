@@ -1,0 +1,9 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.tokenForm {
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  display: grid;
+  padding: 20px;
+}

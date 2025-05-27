@@ -4,6 +4,7 @@
   align-items: center;
   border-bottom: 1px solid $color-border;
   display: grid;
+  grid-area: header;
   grid-auto-flow: column;
   justify-content: space-between;
   padding: 14px 32px 13px;
