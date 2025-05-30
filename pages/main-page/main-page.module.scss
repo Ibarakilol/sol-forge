@@ -8,7 +8,6 @@
     "footer";
   grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
-  min-height: 100vh;
 }
 
 .mainPageWrapper {
@@ -31,12 +30,12 @@
   @include reset-heading();
   @include textHeading($color: transparent, $size: 48px);
   background-clip: text;
-  background-image: linear-gradient(to right, #a347ff, #c084fc, $color-green);
+  background-image: linear-gradient(to right, $color-purple, $color-purple-light, $color-green);
 }
 
 .mainPageMoto {
   @include reset-description();
-  @include textBody($color: $color-white, $size: 18px, $weight: $font-weight-bold);
+  @include textBody($size: 18px, $weight: $font-weight-bold);
   text-align: center;
 }
 
@@ -46,4 +45,5 @@
   gap: 20px;
   grid-template-columns: 1fr 320px;
   justify-content: center;
+  padding-bottom: 96px;
 }

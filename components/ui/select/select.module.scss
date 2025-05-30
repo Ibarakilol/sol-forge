@@ -7,7 +7,7 @@
 
   &:hover:not(.selectDisabled) {
     .selectButton {
-      border-color: $color-black-50;
+      border-color: rgba($color: $color-white, $alpha: 0.6);
     }
   }
 
@@ -23,17 +23,14 @@
   pointer-events: none;
 
   .selectButton {
-    background-color: $color-black-4;
-    border-color: $color-black-4;
+    background-color: rgba($color: $color-white, $alpha: 0.15);
+    border-color: rgba($color: $color-white, $alpha: 0.15);
     cursor: default;
   }
 
-  .selectIcon {
-    color: $color-black-25;
-  }
-
+  .selectIcon,
   .selectValue {
-    color: $color-black-25;
+    color: rgba($color: $color-white, $alpha: 0.4);
   }
 }
 
@@ -46,8 +43,8 @@
 .selectButton {
   @include reset-button();
   align-content: center;
-  background-color: $color-white;
-  border: 1px solid $color-black-30;
+  background-color: $background-panel;
+  border: 1px solid $color-border;
   border-radius: 8px;
   box-sizing: border-box;
   display: grid;
@@ -67,6 +64,7 @@
 
 .selectValue {
   @include textBody();
+  line-height: 20px;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;

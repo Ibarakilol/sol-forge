@@ -3,11 +3,18 @@ import Image from 'next/image';
 
 import Button from '@/components/ui/button';
 
+import type { ICommonModalProps } from '@/interfaces';
+
 import styles from './modal-wallets.module.scss';
 
-const ModalWallets = () => {
+const ModalWallets = ({ onCloseButtonClick }: ICommonModalProps) => {
   const { wallets, select } = useWallet();
   const installedWallets = wallets.filter((wallet) => wallet.readyState === 'Installed');
+
+  const handleSelectWallet = (walletName: any) => {
+    select(walletName);
+    onCloseButtonClick();
+  };
 
   return (
     <div className={styles.modalWallets}>
@@ -28,7 +35,7 @@ const ModalWallets = () => {
                   />
                 }
                 label={wallet.adapter.name}
-                onClick={() => select(wallet.adapter.name)}
+                onClick={() => handleSelectWallet(wallet.adapter.name)}
               />
             ))}
         </div>

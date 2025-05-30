@@ -2,13 +2,17 @@
 @import "@/scss/variables.scss";
 
 .placeholder {
-  @include textAccent($color: $color-black-50);
+  @include textAccent($color: rgba($color: $color-text-body, $alpha: 0.5));
   align-content: center;
-  bottom: 0;
   display: grid;
   height: $component-input-height;
   left: 12px;
   pointer-events: none;
   position: absolute;
+  top: 0;
   z-index: 5;
+}
+
+.placeholderInvalid {
+  color: $color-red;
 }

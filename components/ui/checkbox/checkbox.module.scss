@@ -55,18 +55,18 @@ $halo-size-focus: 22px;
   }
 
   .checkboxIconSquare {
-    background-color: $color-black-4;
-    border-color: $color-black-4;
+    background-color: rgba($color: $color-white, $alpha: 0.15);
+    border-color: rgba($color: $color-white, $alpha: 0.15);
   }
 
   .checkboxLabelText {
-    color: $color-black-25;
+    color: rgba($color: $color-white, $alpha: 0.4);
   }
 
   &.checkboxChecked {
     .checkboxIconCheck {
-      border-bottom: 1px solid $color-black-25;
-      border-left: 1px solid $color-black-25;
+      border-bottom: 1px solid rgba($color: $color-white, $alpha: 0.4);
+      border-left: 1px solid rgba($color: $color-white, $alpha: 0.4);
     }
   }
 }

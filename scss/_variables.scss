@@ -6,41 +6,31 @@ $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 
-// BACKGROUNDS
-$background-body: #06001d;
-$background-button: #a347ff;
-$background-panel: #161224;
-$background-modal: #101725;
-
 // COLORS
-$color-text-body: #3b3b3b;
-$color-text-button: #ffffff;
-$color-border: #56565d;
-$color-outline: #35cdfd;
 $color-red: #d95151;
+$color-red-light: #f9919a;
 $color-green: #1bf3a4;
 $color-white: #ffffff;
 $color-black: #000000;
-$color-black-80: #333333;
-$color-black-50: #7f7f7f;
-$color-black-30: #b0b0b0;
-$color-black-25: #cdcdcd;
-$color-black-20: #c4c4c4;
-$color-black-5: #f2f2f2;
-$color-black-4: #f6f6f6;
-$color-black-3: #f7f7f7;
+$color-purple: #a347ff;
+$color-purple-light: #c084fc;
+$color-outline: $color-green;
+
+$color-text-body: $color-white;
+$color-text-button: $color-white;
+$color-border: #56565d;
+
+// BACKGROUNDS
+$background-body: #06001d;
+$background-button: $color-purple;
+$background-panel: #161224;
+$background-modal: #101725;
 
 // TRANSITION TIME
 $transition-time: 0.15s;
 
 // SHADOWS
-$shadow-focus:
-  0 0 0 1px $color-white,
-  0 0 0 3px $color-outline;
-$shadow-modal: 0 3px 8px rgba(0, 0, 0, 0.12);
-$shadow-select-dropdown:
-  0 -1px 4px rgba(0, 0, 0, 0.04),
-  0 2px 4px rgba(0, 0, 0, 0.16);
+$shadow-focus: 0 0 0 2px $color-outline;
 
 // COMPONENTS
 $component-input-height: 40px;

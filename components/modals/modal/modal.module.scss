@@ -31,6 +31,6 @@
   background-color: $background-modal;
   border: 1px solid $color-border;
   border-radius: 12px;
-  box-shadow: $shadow-modal;
+  box-shadow: 0 3px 8px rgba($color: $color-black, $alpha: 0.12);
   width: 100%;
 }

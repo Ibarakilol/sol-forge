@@ -17,12 +17,12 @@
 
 .footerInfo {
   @include reset-description();
-  @include textBody($color: $color-black-50);
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
   max-width: 380px;
 }
 
 .footerCopyrights {
-  @include textBody($color: $color-black-50);
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
   border-top: 1px solid $color-border;
   padding-top: 32px;
 }

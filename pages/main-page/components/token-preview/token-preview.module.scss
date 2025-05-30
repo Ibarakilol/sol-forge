@@ -22,7 +22,7 @@
 
 .tokenPreviewTitle {
   @include reset-heading();
-  @include textHeading($color: $color-white, $size: 20px);
+  @include textHeading($size: 20px);
 }
 
 .tokenPreviewToken {
@@ -44,11 +44,11 @@
 }
 
 .tokenPreviewTokenName {
-  @include textBody($color: $color-white, $size: 16px, $weight: $font-weight-medium);
+  @include textBody($size: 16px, $weight: $font-weight-medium);
 }
 
 .tokenPreviewTokenSymbol {
-  @include textBody($color: $color-black-30);
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
   text-transform: uppercase;
 }
 
@@ -68,11 +68,11 @@
 }
 
 .tokenPreviewInfoItemLabel {
-  @include textBody($color: $color-black-30);
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
 }
 
 .tokenPreviewInfoItemValue {
-  @include textBody($color: $color-white);
+  @include textBody();
 }
 
 .tokenPreviewInfoItemValueNetwork {

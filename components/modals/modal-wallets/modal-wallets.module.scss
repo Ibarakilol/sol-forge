@@ -8,7 +8,7 @@
 }
 
 .modalWalletsTitle {
-  @include textBody($color: $color-white, $size: 16px);
+  @include textBody($size: 16px);
 }
 
 .modalWalletsList {

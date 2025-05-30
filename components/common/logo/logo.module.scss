@@ -2,7 +2,7 @@
 @import "@/scss/variables.scss";
 
 .logo {
-  @include textBody($color: $color-white, $size: 24px, $weight: $font-weight-bold);
+  @include textBody($size: 24px, $weight: $font-weight-bold);
   letter-spacing: 3px;
   text-transform: uppercase;
 }

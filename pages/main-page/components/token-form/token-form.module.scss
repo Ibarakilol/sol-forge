@@ -5,5 +5,46 @@
   border: 1px solid $color-border;
   border-radius: 12px;
   display: grid;
+  gap: 20px;
   padding: 20px;
+}
+
+.tokenFormHeader {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 24px 1fr;
+}
+
+.tokenFormIcon {
+  color: $color-white;
+}
+
+.tokenFormTitle {
+  @include reset-heading();
+  @include textHeading($size: 20px);
+}
+
+.tokenFormWrapper {
+  display: grid;
+  gap: 20px;
+}
+
+.tokenFormInputs {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 355px);
+}
+
+.tokenFormInputWrapper {
+  display: grid;
+  gap: 8px;
+}
+
+.tokenFormInputLabel {
+  @include textBody($weight: $font-weight-medium);
+}
+
+.tokenFormInputDescription {
+  @include textCaption($color: rgba($color: $color-text-body, $alpha: 0.5));
 }

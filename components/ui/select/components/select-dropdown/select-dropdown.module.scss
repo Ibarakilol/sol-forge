@@ -2,9 +2,11 @@
 @import "@/scss/variables.scss";
 
 .selectDropdown {
-  background-color: $color-white;
+  background-color: $background-panel;
   border-radius: 8px;
-  box-shadow: $shadow-select-dropdown;
+  box-shadow:
+    0 -1px 4px rgba($color: $color-black, $alpha: 0.04),
+    0 2px 4px rgba($color: $color-black, $alpha: 0.16);
   overflow: hidden;
   position: absolute;
   width: 100%;
@@ -32,8 +34,8 @@
 .selectDropdownItem {
   @include reset-button();
   @include textBody();
-  background-color: $color-white;
-  min-height: 40px;
+  background-color: $background-panel;
+  height: 40px;
   padding: 12px 16px;
   text-align: start;
   transition: background-color $transition-time;
@@ -41,12 +43,12 @@
 
   &:hover,
   &:focus {
-    background-color: $color-black-3;
+    background-color: rgba($color: $color-white, $alpha: 0.1);
   }
 }
 
 .selectDropdownItemActive {
-  background-color: $color-black-3;
+  background-color: rgba($color: $color-white, $alpha: 0.1);
   cursor: default;
   pointer-events: none;
 }
