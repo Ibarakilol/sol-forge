@@ -1,9 +1,26 @@
 import { create } from 'zustand';
 
+import type { ITokenForm } from '@/interfaces';
+
 interface TokenStore {
-  token: string;
+  tokenForm: ITokenForm;
+  changeTokenForm: <K extends keyof ITokenForm>(property: K) => (value: ITokenForm[K]) => void;
+  resetTokenForm: () => void;
 }
 
-export const useTokenStore = create<TokenStore>((set) => ({
-  token: '',
+const emptyTokenForm: ITokenForm = {
+  decimals: '9',
+  freezeAuthority: false,
+  mintAuthority: false,
+  name: '',
+  supply: '',
+  symbol: '',
+  updateAuthority: false,
+};
+
+export const useTokenStore = create<TokenStore>((set, get) => ({
+  tokenForm: emptyTokenForm,
+  changeTokenForm: (property) => (value) =>
+    set({ tokenForm: { ...get().tokenForm, [property]: value } }),
+  resetTokenForm: () => set({ tokenForm: emptyTokenForm }),
 }));

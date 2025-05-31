@@ -4,44 +4,31 @@ import InfoBlock from '@/components/common/info-block';
 import TokenForm from './components/token-form';
 import TokenPreview from './components/token-preview';
 import EyeIcon from '@/assets/icons/eye.svg';
-import NetworkIcon from '@/assets/icons/network.svg';
+
+import { useTokenStore } from '@/stores/token-store';
+
+import { useNetwork } from '@/providers/wallet-context-provider';
+import { NetworkLabel } from '@/constants';
 
 import styles from './main-page.module.scss';
 
 const MainPage = () => {
+  const { tokenForm } = useTokenStore();
+  const { network } = useNetwork();
+
   const tokenInfoItems = [
     {
       key: 'Supply',
-      value: '0',
+      value: tokenForm.supply || '0',
     },
     {
       key: 'Decimals',
-      value: '9',
+      value: tokenForm.decimals,
     },
     {
       isNetwork: true,
       key: 'Network',
-      value: 'Devnet',
-    },
-  ];
-
-  const networkInfoItems = [
-    {
-      isNetwork: true,
-      key: 'Network',
-      value: 'Devnet',
-    },
-    {
-      key: 'TPS',
-      value: '2 860',
-    },
-    {
-      key: 'Slot',
-      value: '234 839 613',
-    },
-    {
-      key: 'Epoch',
-      value: '458',
+      value: NetworkLabel[network],
     },
   ];
 
@@ -59,7 +46,6 @@ const MainPage = () => {
             <InfoBlock icon={<EyeIcon />} infoItems={tokenInfoItems} title="Token Preview">
               <TokenPreview />
             </InfoBlock>
-            <InfoBlock icon={<NetworkIcon />} infoItems={networkInfoItems} title="Network Status" />
           </div>
         </div>
       </main>

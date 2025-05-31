@@ -8,36 +8,26 @@
   position: relative;
 }
 
-.inputField {
-  @include textAccent();
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: $background-panel;
-  border: 1px solid $color-border;
-  border-radius: 8px;
-  box-sizing: border-box;
-  caret-color: rgba($color: $color-white, $alpha: 0.75);
-  margin: 0;
-  outline: none;
-  padding: 0 11px;
-  transition: border-color $transition-time;
-  width: 100%;
-
-  &:hover:not(:disabled) {
-    border-color: rgba($color: $color-white, $alpha: 0.6);
+.inputDisabled {
+  .inputField,
+  .inputTextarea {
+    background-color: rgba($color: $color-white, $alpha: 0.15);
+    border-color: rgba($color: $color-white, $alpha: 0.15);
+    color: rgba($color: $color-white, $alpha: 0.4);
   }
 
-  &:focus-within:not(:disabled) {
-    border-color: $color-outline;
-    box-shadow: 0 0 0 1px $color-outline;
+  .inputTextarea {
+    overflow: hidden;
   }
 
-  // noinspection CssInvalidPseudoSelector
-  &::-webkit-contacts-auto-fill-button {
-    position: absolute;
-    right: 0;
-    visibility: hidden;
+  &.inputMulti {
+    background-color: rgba($color: $color-white, $alpha: 0.15);
+    border-color: rgba($color: $color-white, $alpha: 0.15);
+
+    .inputTextarea {
+      background-color: transparent;
+      border-color: initial;
+    }
   }
 }
 
@@ -82,13 +72,46 @@
   padding: 12px 0;
   transition: border-color $transition-time ease-in-out;
 
-  &:hover {
+  &:hover:not(.inputDisabled) {
     border-color: rgba($color: $color-white, $alpha: 0.6);
   }
 
-  &:focus-within {
+  &:focus-within:not(.inputDisabled) {
     border-color: $color-outline;
     box-shadow: 0 0 0 1px $color-outline;
+  }
+}
+
+.inputField {
+  @include textAccent();
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: $background-panel;
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  box-sizing: border-box;
+  caret-color: rgba($color: $color-white, $alpha: 0.75);
+  margin: 0;
+  outline: none;
+  padding: 0 11px;
+  transition: border-color $transition-time;
+  width: 100%;
+
+  &:hover:not(:disabled) {
+    border-color: rgba($color: $color-white, $alpha: 0.6);
+  }
+
+  &:focus-within:not(:disabled) {
+    border-color: $color-outline;
+    box-shadow: 0 0 0 1px $color-outline;
+  }
+
+  // noinspection CssInvalidPseudoSelector
+  &::-webkit-contacts-auto-fill-button {
+    position: absolute;
+    right: 0;
+    visibility: hidden;
   }
 }
 
@@ -107,23 +130,5 @@
 
   &::-webkit-resizer {
     display: none;
-  }
-}
-
-.inputDisabled {
-  .inputField,
-  .inputTextarea {
-    background-color: rgba($color: $color-white, $alpha: 0.15);
-    border-color: rgba($color: $color-white, $alpha: 0.15);
-    color: rgba($color: $color-white, $alpha: 0.4);
-  }
-
-  .inputTextarea {
-    overflow: hidden;
-  }
-
-  &.inputMulti {
-    background-color: rgba($color: $color-white, $alpha: 0.15);
-    border-color: rgba($color: $color-white, $alpha: 0.15);
   }
 }

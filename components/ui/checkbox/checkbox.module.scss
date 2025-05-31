@@ -6,6 +6,7 @@ $halo-size-focus: 22px;
 
 .checkbox {
   position: relative;
+  z-index: 999;
 
   &:not(.checkboxDisabled) {
     .checkboxLabel:hover {

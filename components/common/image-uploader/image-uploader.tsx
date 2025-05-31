@@ -10,7 +10,7 @@ import type { ImageUploaderProps } from './image-uploader.props';
 
 import styles from './image-uploader.module.scss';
 
-const ImageUploader = ({ isDisabled, onImageUpload }: ImageUploaderProps) => {
+const ImageUploader = ({ isDisabled, isValid = true, onImageUpload }: ImageUploaderProps) => {
   const id = useId();
 
   const { file, fileError, filesInputRef, isDragging, onDrop, onDragOver, onDragLeave, onUpload } =
@@ -18,7 +18,7 @@ const ImageUploader = ({ isDisabled, onImageUpload }: ImageUploaderProps) => {
 
   useEffect(() => {
     if (file) {
-      onImageUpload([file]);
+      onImageUpload(file);
     }
   }, [file, onImageUpload]);
 
@@ -28,7 +28,8 @@ const ImageUploader = ({ isDisabled, onImageUpload }: ImageUploaderProps) => {
         className={clsx(
           styles.imageUploaderBrowse,
           isDisabled && styles.imageUploaderBrowseDisabled,
-          isDragging && styles.imageUploaderBrowseDragging
+          isDragging && styles.imageUploaderBrowseDragging,
+          !isValid && styles.imageUploaderBrowseInvalid
         )}
         htmlFor={id}
         tabIndex={isDisabled ? -1 : 0}

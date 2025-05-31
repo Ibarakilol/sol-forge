@@ -1,7 +1,6 @@
 import { type ChangeEvent, useCallback, useId, useState } from 'react';
 import clsx from 'clsx';
 
-import TextError from '@/components/ui/text-error';
 import Placeholder from './components/placeholder';
 
 import type { InputProps } from './input.props';
@@ -14,7 +13,6 @@ const Input = ({
   maxLength,
   placeholder,
   rows,
-  textError,
   value,
   onBlur,
   onChange,
@@ -72,7 +70,6 @@ const Input = ({
     <div
       className={clsx(styles.input, {
         [styles.inputDisabled]: isDisabled,
-        [styles.inputFocus]: isFocused,
         [styles.inputInvalid]: !isValid,
         [styles.inputMulti]: !!rows,
       })}
@@ -86,7 +83,6 @@ const Input = ({
         />
       )}
       {renderInput()}
-      {!isValid && !isDisabled && textError && <TextError textError={textError} />}
     </div>
   );
 };
