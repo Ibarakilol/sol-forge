@@ -1,0 +1,43 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.authorityOptions {
+  background-color: $background-authorities;
+  border-radius: 12px;
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+.authorityOptionsHeader {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 24px 1fr;
+}
+
+.authorityOptionsIcon {
+  color: $color-purple;
+}
+
+.authorityOptionsTitle {
+  @include reset-heading();
+  @include textHeading($size: 20px);
+}
+
+.authorityOptionsList {
+  @include reset-list();
+  display: grid;
+  gap: 12px;
+}
+
+.authorityOptionsItem {
+  @include reset-list-item();
+  display: grid;
+  gap: 4px;
+}
+
+.authorityOptionsDescription {
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
+  padding-left: 36px;
+}
