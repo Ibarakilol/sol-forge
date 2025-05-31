@@ -1,0 +1,53 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.infoBlock {
+  border: 1px solid $color-border;
+  border-radius: 12px;
+  display: grid;
+  gap: 20px;
+  padding: 20px;
+}
+
+.infoBlockHeader {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: 24px 1fr;
+
+  svg {
+    color: $color-green;
+  }
+}
+
+.infoBlockTitle {
+  @include reset-heading();
+  @include textHeading($size: 20px);
+}
+
+.infoBlockInfo {
+  @include reset-list();
+  display: grid;
+  gap: 8px;
+}
+
+.infoBlockInfoItem {
+  @include reset-list-item();
+  align-items: center;
+  display: grid;
+  gap: 20px;
+  grid-auto-flow: column;
+  justify-content: space-between;
+}
+
+.infoBlockInfoItemLabel {
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
+}
+
+.infoBlockInfoItemValue {
+  @include textBody();
+}
+
+.infoBlockInfoItemValueNetwork {
+  color: $color-green;
+}

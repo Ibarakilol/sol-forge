@@ -1,3 +1,4 @@
+import ImageUploader from '@/components/common/image-uploader';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import Select from '@/components/ui/select';
@@ -60,6 +61,11 @@ const TokenForm = () => {
           <span className={styles.tokenFormInputDescription}>
             A brief description of your token
           </span>
+        </div>
+
+        <div className={styles.tokenFormInputWrapper}>
+          <span className={styles.tokenFormInputLabel}>Token Logo</span>
+          <ImageUploader onImageUpload={() => {}} />
         </div>
       </div>
 
