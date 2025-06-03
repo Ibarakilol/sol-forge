@@ -11,3 +11,15 @@ export interface ITokenForm {
   symbol: string;
   updateAuthority: boolean;
 }
+
+export interface ITokenFormValidationData {
+  decimals: { isValid: boolean };
+  description: { isValid: boolean };
+  freezeAuthority: { isValid: boolean };
+  logo: { isValid: boolean };
+  mintAuthority: { isValid: boolean };
+  name: { isValid: boolean };
+  supply: { isValid: boolean };
+  symbol: { isValid: boolean };
+  updateAuthority: { isValid: boolean };
+}

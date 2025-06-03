@@ -6,7 +6,9 @@
   border-radius: 12px;
   display: grid;
   gap: 20px;
+  overflow: hidden;
   padding: 20px;
+  position: relative;
 }
 
 .tokenFormHeader {

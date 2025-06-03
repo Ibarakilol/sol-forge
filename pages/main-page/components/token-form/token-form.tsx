@@ -1,7 +1,9 @@
 import { useCallback } from 'react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
+import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
 import ImageUploader from '@/components/common/image-uploader';
+import WalletStub from '@/components/common/wallet-stub';
 import Button from '@/components/ui/button';
 import Input from '@/components/ui/input';
 import Select from '@/components/ui/select';
@@ -13,14 +15,26 @@ import { useTokenStore } from '@/stores/token-store';
 
 import { useNetwork } from '@/providers/wallet-context-provider';
 import { NetworkLabel, Regex } from '@/constants';
+import { createSolanaToken } from '@/libs';
 import { getOnlyNumbers } from '@/utils';
 import type { IFile } from '@/interfaces';
 
 import styles from './token-form.module.scss';
 
 const TokenForm = () => {
-  const { tokenForm, changeTokenForm } = useTokenStore();
+  const { isProcessing, tokenForm, tokenFormValidationData, createToken, changeTokenForm } =
+    useTokenStore();
   const { network, setNetwork } = useNetwork();
+  const { connection } = useConnection();
+  const { publicKey, signTransaction } = useWallet();
+  const isWalletConnected = !(!publicKey || !signTransaction);
+
+  const handleCreateSolanaToken = async () => {
+    if (isWalletConnected) {
+      const handleCreateToken = createSolanaToken(connection, publicKey, signTransaction);
+      await createToken(handleCreateToken);
+    }
+  };
 
   const validateTokenNaming = (value: string) => {
     if (value.match(Regex.TOKEN_NAME)) {
@@ -49,6 +63,8 @@ const TokenForm = () => {
           <div className={styles.tokenFormInputWrapper}>
             <span className={styles.tokenFormInputLabel}>Token Name</span>
             <Input
+              isDisabled={isProcessing}
+              isValid={tokenFormValidationData.name.isValid}
               placeholder="My Awesome Token"
               value={tokenForm.name}
               onChange={(value) => changeTokenForm('name')(validateTokenNaming(value))}
@@ -59,6 +75,8 @@ const TokenForm = () => {
           <div className={styles.tokenFormInputWrapper}>
             <span className={styles.tokenFormInputLabel}>Symbol</span>
             <Input
+              isDisabled={isProcessing}
+              isValid={tokenFormValidationData.symbol.isValid}
               placeholder="MAT"
               value={tokenForm.symbol}
               onChange={(value) =>
@@ -75,6 +93,8 @@ const TokenForm = () => {
           <div className={styles.tokenFormInputWrapper}>
             <span className={styles.tokenFormInputLabel}>Total Supply</span>
             <Input
+              isDisabled={isProcessing}
+              isValid={tokenFormValidationData.supply.isValid}
               maxLength={10}
               placeholder="1000000000"
               value={tokenForm.supply}
@@ -86,6 +106,7 @@ const TokenForm = () => {
           <div className={styles.tokenFormInputWrapper}>
             <span className={styles.tokenFormInputLabel}>Decimals</span>
             <Select
+              isDisabled={isProcessing}
               items={[
                 { id: '0', value: '0 (No decimals)' },
                 { id: '6', value: '6 (USDC standart)' },
@@ -102,6 +123,7 @@ const TokenForm = () => {
         <div className={styles.tokenFormInputWrapper}>
           <span className={styles.tokenFormInputLabel}>Network</span>
           <Select
+            isDisabled={isProcessing}
             items={[
               { id: WalletAdapterNetwork.Devnet, value: NetworkLabel[WalletAdapterNetwork.Devnet] },
               {
@@ -120,6 +142,7 @@ const TokenForm = () => {
         <div className={styles.tokenFormInputWrapper}>
           <span className={styles.tokenFormInputLabel}>Token Description</span>
           <Input
+            isDisabled={isProcessing}
             maxLength={512}
             placeholder="Describe your token..."
             rows={3}
@@ -133,13 +156,24 @@ const TokenForm = () => {
 
         <div className={styles.tokenFormInputWrapper}>
           <span className={styles.tokenFormInputLabel}>Token Logo</span>
-          <ImageUploader onImageUpload={handleImageUpload} />
+          <ImageUploader
+            isDisabled={isProcessing}
+            isValid={tokenFormValidationData.logo.isValid}
+            onImageUpload={handleImageUpload}
+          />
         </div>
       </div>
 
       <AuthorityOptions />
 
-      <Button icon={<RocketIcon />} label="Create Token" onClick={() => {}} />
+      <Button
+        icon={<RocketIcon />}
+        isDisabled={isProcessing}
+        label="Create Token"
+        onClick={handleCreateSolanaToken}
+      />
+
+      {!isWalletConnected && <WalletStub />}
     </div>
   );
 };

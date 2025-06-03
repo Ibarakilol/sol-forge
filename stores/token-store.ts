@@ -1,11 +1,15 @@
 import { create } from 'zustand';
 
-import type { ITokenForm } from '@/interfaces';
+import type { ITokenForm, ITokenFormValidationData } from '@/interfaces';
 
 interface TokenStore {
+  isProcessing: boolean;
   tokenForm: ITokenForm;
+  tokenFormValidationData: ITokenFormValidationData;
   changeTokenForm: <K extends keyof ITokenForm>(property: K) => (value: ITokenForm[K]) => void;
+  createToken: (createSolanaToken: (tokenForm: ITokenForm) => Promise<string>) => Promise<void>;
   resetTokenForm: () => void;
+  validateTokenForm: () => void;
 }
 
 const emptyTokenForm: ITokenForm = {
@@ -18,9 +22,63 @@ const emptyTokenForm: ITokenForm = {
   updateAuthority: false,
 };
 
+const initialTokenFormValidationData: ITokenFormValidationData = {
+  decimals: { isValid: true },
+  description: { isValid: true },
+  freezeAuthority: { isValid: true },
+  logo: { isValid: true },
+  mintAuthority: { isValid: true },
+  name: { isValid: true },
+  supply: { isValid: true },
+  symbol: { isValid: true },
+  updateAuthority: { isValid: true },
+};
+
 export const useTokenStore = create<TokenStore>((set, get) => ({
+  isProcessing: false,
   tokenForm: emptyTokenForm,
+  tokenFormValidationData: initialTokenFormValidationData,
   changeTokenForm: (property) => (value) =>
-    set({ tokenForm: { ...get().tokenForm, [property]: value } }),
-  resetTokenForm: () => set({ tokenForm: emptyTokenForm }),
+    set({
+      tokenForm: { ...get().tokenForm, [property]: value },
+      tokenFormValidationData: { ...get().tokenFormValidationData, [property]: { isValid: true } },
+    }),
+  createToken: async (createSolanaToken) => {
+    set({ isProcessing: true });
+
+    get().validateTokenForm();
+    const isTokenFormValid = Object.values(get().tokenFormValidationData).every(
+      (value) => value.isValid
+    );
+
+    if (isTokenFormValid) {
+      await createSolanaToken(get().tokenForm);
+    }
+
+    set({ isProcessing: false });
+  },
+  resetTokenForm: () =>
+    set({ tokenForm: emptyTokenForm, tokenFormValidationData: initialTokenFormValidationData }),
+  validateTokenForm: () => {
+    const validationData = Object.keys(get().tokenFormValidationData).reduce((acc, property) => {
+      let isValid = true;
+
+      switch (property) {
+        case 'logo':
+          isValid = !!get().tokenForm[property];
+          break;
+        case 'name':
+        case 'supply':
+        case 'symbol':
+          isValid = !!get().tokenForm[property].trim();
+          break;
+        default:
+          isValid = true;
+      }
+
+      return { ...acc, [property]: { isValid } };
+    }, {} as ITokenFormValidationData);
+
+    set({ tokenFormValidationData: validationData });
+  },
 }));

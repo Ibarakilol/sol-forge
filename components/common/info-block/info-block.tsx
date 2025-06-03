@@ -1,10 +1,15 @@
+import { useWallet } from '@solana/wallet-adapter-react';
 import clsx from 'clsx';
+
+import WalletStub from '../wallet-stub';
 
 import type { InfoBlockProps } from './info-block.props';
 
 import styles from './info-block.module.scss';
 
 const InfoBlock = ({ children, icon, infoItems, title }: InfoBlockProps) => {
+  const { publicKey } = useWallet();
+
   return (
     <div className={styles.infoBlock}>
       <div className={styles.infoBlockHeader}>
@@ -29,6 +34,8 @@ const InfoBlock = ({ children, icon, infoItems, title }: InfoBlockProps) => {
           ))}
         </ul>
       )}
+
+      {!publicKey && <WalletStub />}
     </div>
   );
 };
