@@ -1,13 +1,15 @@
 import { create } from 'zustand';
 
-import type { ITokenForm, ITokenFormValidationData } from '@/interfaces';
+import type { ITokenForm, ITokenFormValidationData, ITokenResult } from '@/interfaces';
 
 interface TokenStore {
   isProcessing: boolean;
   tokenForm: ITokenForm;
   tokenFormValidationData: ITokenFormValidationData;
   changeTokenForm: <K extends keyof ITokenForm>(property: K) => (value: ITokenForm[K]) => void;
-  createToken: (createSolanaToken: (tokenForm: ITokenForm) => Promise<string>) => Promise<void>;
+  createToken: (
+    createSolanaToken: (tokenForm: ITokenForm) => Promise<ITokenResult>
+  ) => Promise<ITokenResult | undefined>;
   resetTokenForm: () => void;
   validateTokenForm: () => void;
 }
@@ -52,7 +54,10 @@ export const useTokenStore = create<TokenStore>((set, get) => ({
     );
 
     if (isTokenFormValid) {
-      await createSolanaToken(get().tokenForm);
+      const tokenResult = await createSolanaToken(get().tokenForm);
+      set({ isProcessing: false });
+
+      return tokenResult;
     }
 
     set({ isProcessing: false });
@@ -68,9 +73,11 @@ export const useTokenStore = create<TokenStore>((set, get) => ({
           isValid = !!get().tokenForm[property];
           break;
         case 'name':
-        case 'supply':
         case 'symbol':
           isValid = !!get().tokenForm[property].trim();
+          break;
+        case 'supply':
+          isValid = !!get().tokenForm[property].trim() && Number(get().tokenForm[property]) > 0;
           break;
         default:
           isValid = true;

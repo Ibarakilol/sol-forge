@@ -1,6 +1,7 @@
 import { useWallet } from '@solana/wallet-adapter-react';
 
 import Button from '@/components/ui/button';
+import ExternalLink from '../external-link';
 import Logo from '../logo';
 import WalletIcon from '@/assets/icons/wallet.svg';
 
@@ -25,6 +26,17 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <Logo isSmall />
+      <nav className={styles.headerNav}>
+        <ExternalLink className={styles.headerNavLink} href="https://dexscreener.com/">
+          DEX Screener
+        </ExternalLink>
+        <ExternalLink
+          className={styles.headerNavLink}
+          href="https://raydium.io/liquidity/create-pool/"
+        >
+          Create Liquidity
+        </ExternalLink>
+      </nav>
       <Button
         className={styles.headerWalletButton}
         icon={<WalletIcon />}

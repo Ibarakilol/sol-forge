@@ -1,3 +1,4 @@
+@import "@/scss/mixins.scss";
 @import "@/scss/variables.scss";
 
 .header {
@@ -8,6 +9,21 @@
   grid-auto-flow: column;
   justify-content: space-between;
   padding: 14px 32px 13px;
+}
+
+.headerNav {
+  display: grid;
+  gap: 64px;
+  grid-auto-flow: column;
+}
+
+.headerNavLink {
+  @include textBody($size: 15px, $weight: $font-weight-medium);
+  transition: color $transition-time;
+
+  &:hover {
+    color: $color-purple-light;
+  }
 }
 
 .headerWalletButton {

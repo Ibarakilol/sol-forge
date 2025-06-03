@@ -23,3 +23,8 @@ export interface ITokenFormValidationData {
   symbol: { isValid: boolean };
   updateAuthority: { isValid: boolean };
 }
+
+export interface ITokenResult {
+  data: string;
+  isSuccess: boolean;
+}

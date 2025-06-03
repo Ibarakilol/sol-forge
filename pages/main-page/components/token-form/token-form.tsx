@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { WalletAdapterNetwork } from '@solana/wallet-adapter-base';
 import { useConnection, useWallet } from '@solana/wallet-adapter-react';
 
@@ -11,30 +11,49 @@ import AuthorityOptions from '../authority-options';
 import PlusIcon from '@/assets/icons/plus.svg';
 import RocketIcon from '@/assets/icons/rocket.svg';
 
+import { useModalStore } from '@/stores/modal-store';
 import { useTokenStore } from '@/stores/token-store';
 
 import { useNetwork } from '@/providers/wallet-context-provider';
-import { NetworkLabel, Regex } from '@/constants';
+import { ModalName, NetworkLabel, Regex } from '@/constants';
 import { createSolanaToken } from '@/libs';
 import { getOnlyNumbers } from '@/utils';
-import type { IFile } from '@/interfaces';
+import type { IFile, ITokenResult } from '@/interfaces';
 
 import styles from './token-form.module.scss';
 
 const TokenForm = () => {
   const { isProcessing, tokenForm, tokenFormValidationData, createToken, changeTokenForm } =
     useTokenStore();
+  const { showModal } = useModalStore();
   const { network, setNetwork } = useNetwork();
   const { connection } = useConnection();
   const { publicKey, signTransaction } = useWallet();
+  const [tokenResult, setTokenResult] = useState<ITokenResult | null>(null);
   const isWalletConnected = !(!publicKey || !signTransaction);
 
   const handleCreateSolanaToken = async () => {
     if (isWalletConnected) {
       const handleCreateToken = createSolanaToken(connection, publicKey, signTransaction);
-      await createToken(handleCreateToken);
+      const createTokenResult = await createToken(handleCreateToken);
+
+      if (createTokenResult) {
+        setTokenResult(createTokenResult);
+      }
     }
   };
+
+  useEffect(() => {
+    if (tokenResult) {
+      const { data, isSuccess } = tokenResult;
+
+      if (isSuccess) {
+        console.log(data);
+      } else {
+        showModal(ModalName.WARNING, { errorText: data, onModalClose: () => setTokenResult(null) });
+      }
+    }
+  }, [showModal, tokenResult]);
 
   const validateTokenNaming = (value: string) => {
     if (value.match(Regex.TOKEN_NAME)) {

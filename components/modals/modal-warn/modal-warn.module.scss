@@ -1,0 +1,25 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.modalWarn {
+  box-sizing: border-box;
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  width: 320px;
+}
+
+.modalWarnInfo {
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.modalWarnTitle {
+  @include textBody($size: 18px);
+}
+
+.modalWarnText {
+  @include reset-description();
+  @include textBody($color: rgba($color: $color-text-body, $alpha: 0.5));
+}

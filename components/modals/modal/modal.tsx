@@ -2,6 +2,7 @@ import { type FC, useRef } from 'react';
 import clsx from 'clsx';
 
 import ModalWallets from '../modal-wallets';
+import ModalWarn from '../modal-warn';
 
 import { useModalStore } from '@/stores/modal-store';
 
@@ -19,6 +20,7 @@ import styles from './modal.module.scss';
 
 const MODAL_COMPONENTS: Record<ModalName, FC<ICommonModalProps>> = {
   [ModalName.WALLETS]: ModalWallets,
+  [ModalName.WARNING]: ModalWarn,
 };
 
 const Modal = ({ modalName }: ModalProps) => {
