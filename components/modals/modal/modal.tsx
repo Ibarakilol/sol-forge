@@ -1,6 +1,7 @@
 import { type FC, useRef } from 'react';
 import clsx from 'clsx';
 
+import ModalToken from '../modal-token';
 import ModalWallets from '../modal-wallets';
 import ModalWarn from '../modal-warn';
 
@@ -19,6 +20,7 @@ import type { ModalProps } from './modal.props';
 import styles from './modal.module.scss';
 
 const MODAL_COMPONENTS: Record<ModalName, FC<ICommonModalProps>> = {
+  [ModalName.TOKEN]: ModalToken,
   [ModalName.WALLETS]: ModalWallets,
   [ModalName.WARNING]: ModalWarn,
 };
@@ -28,7 +30,7 @@ const Modal = ({ modalName }: ModalProps) => {
   const { closeModal } = useModalStore();
   const { isUnmounting, onAnimationEnd, unmountComponent } = useUnmountAnimation(closeModal);
 
-  useOnClickOutside(modalRef, unmountComponent);
+  useOnClickOutside(modalRef, unmountComponent, modalName === ModalName.TOKEN);
   useKeyUpGlobal(Key.ESCAPE, (evt) => {
     evt.stopPropagation();
     unmountComponent();

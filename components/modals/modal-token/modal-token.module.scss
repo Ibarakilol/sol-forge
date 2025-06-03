@@ -1,0 +1,60 @@
+@import "@/scss/mixins.scss";
+@import "@/scss/variables.scss";
+
+.modalToken {
+  align-items: center;
+  box-sizing: border-box;
+  display: grid;
+  gap: 24px;
+  padding: 24px;
+  width: 420px;
+}
+
+.modalTokenHeader {
+  display: grid;
+  gap: 12px;
+}
+
+.modalTokenTitle {
+  @include textBody($color: $color-green, $size: 18px, $weight: $font-weight-bold);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.modalTokenMint {
+  @include textBody();
+  align-items: center;
+  cursor: pointer;
+  display: grid;
+  grid-auto-flow: column;
+  transition: color $transition-time;
+
+  &:hover {
+    color: $color-purple;
+  }
+}
+
+.modalTokenMintIcon {
+  padding-right: 4px;
+}
+
+.modalTokenLinks {
+  display: grid;
+  gap: 8px;
+}
+
+.modalTokenLink {
+  @include textBody();
+  border: 1px solid $color-purple-light;
+  border-radius: 8px;
+  box-sizing: border-box;
+  padding: 12px;
+  text-align: center;
+  transition: all $transition-time;
+  width: 100%;
+
+  &:hover {
+    border-color: $color-purple;
+    color: $color-purple;
+  }
+}

@@ -48,7 +48,10 @@ const TokenForm = () => {
       const { data, isSuccess } = tokenResult;
 
       if (isSuccess) {
-        console.log(data);
+        showModal(ModalName.TOKEN, {
+          mint: data,
+          onModalClose: () => setTokenResult(null),
+        });
       } else {
         showModal(ModalName.WARNING, { errorText: data, onModalClose: () => setTokenResult(null) });
       }

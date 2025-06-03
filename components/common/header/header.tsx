@@ -6,6 +6,7 @@ import Logo from '../logo';
 import WalletIcon from '@/assets/icons/wallet.svg';
 
 import { useModalStore } from '@/stores/modal-store';
+import { useTokenStore } from '@/stores/token-store';
 
 import { ModalName } from '@/constants';
 
@@ -14,9 +15,11 @@ import styles from './header.module.scss';
 const Header = () => {
   const { publicKey, disconnect } = useWallet();
   const { showModal } = useModalStore();
+  const { resetTokenForm } = useTokenStore();
 
   const handleButtonClick = () => {
     if (publicKey) {
+      resetTokenForm();
       disconnect();
     } else {
       showModal(ModalName.WALLETS);
